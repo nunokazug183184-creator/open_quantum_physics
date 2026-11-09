@@ -1,0 +1,127 @@
+\documentclass[11pt]{ltjsarticle}
+\input{preamble}
+
+\title{散逸による量子相と開放系の数学的構造\\ ── 先行研究の整理と研究テーマの設定}
+\date{2026年11月9日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+強い3体ロスによる量子ゼノ効果から生じるダイマー超流動を出発点として、有効リウビリアン、ゼノ極限の数学、混合状態の相の理論、開放系の微分幾何学的定式化に関する先行研究を整理する。そのうえで今後の研究テーマとして、(A)~詳細つり合いのない開放系の勾配流構造、(B)~開放系の超流動相の幾何学、を設定する。
+\end{abstract}
+
+\paragraph{このノートの信頼度について}
+文献情報は Web 検索の要約に基づき、論文本文は未読である。\unverified{} と記した部分は筆者らの考察であり、文献による裏付けも厳密な検証もまだない。
+
+\section{出発点：3体ロスとダイマー超流動}
+
+格子上のボソンを考える。ハミルトニアンはボース・ハバード模型
+\begin{equation}
+H = -J\sum_{\langle ij\rangle}\qty(a_i^\dagger a_j + \mathrm{h.c.}) + \frac{U}{2}\sum_i n_i(n_i-1) - \mu\sum_i n_i
+\end{equation}
+とし、3体ロスを Lindblad 方程式
+\begin{equation}
+\dv{\rho}{t} = \Lcal\rho = -i[H,\rho] + \sum_i \Dcal[L_i]\rho,\qquad
+\Dcal[L]\rho = L\rho L^\dagger - \frac12\qty{L^\dagger L,\rho},\qquad
+L_i = \sqrt{\gamma_3}\,a_i^3
+\label{eq:lindblad}
+\end{equation}
+で記述する（$\gamma_3$ の規格化の慣習は文献によって異なる）。
+
+Daley ら（PRL 102, 040402 (2009)）によれば、$\gamma_3 \gg J$ では量子ゼノ効果によって3重占有が動的に抑制され、各サイトの占有数が2以下の部分空間への射影 $\Pcal$ の上で、実効的な3体ハードコア制約をもつ模型が得られる。仮想的な3重占有を経由する残留散逸は $J^2/\gamma_3$ のオーダーである。この制約のもとでは引力 $U<0$ のボソンが安定化し、ダイマー（ペア）の凝縮相、すなわちダイマー超流動が現れる。Diehl ら（arXiv:0910.1859）によれば、原子超流動からダイマー超流動への転移は一般に1次（Coleman--Weinberg 機構）であり、単位充填では Ising 臨界点になる。
+
+\section{有効リウビリアンと断熱消去}
+
+\begin{itemize}
+\item \textbf{一般化シュリーファー・ウルフ変換}（Kessler, PRA 86, 012126 (2012)）：非ユニタリな回転によって、非摂動の定常状態を速い自由度から切り離す。こうして得られる有効リウビリアンは、低励起スペクトルを任意の次数まで再現する。
+\item \textbf{幾何学的な断熱消去}（Azouit--Sarlette--Rouchon, arXiv:1603.04630）：Fenichel の不変多様体定理（中心多様体）に基づく。遅い多様体の座標の取り方に\textbf{ゲージの自由度}がある（arXiv:2211.11008）。
+\item \textbf{完全正値性（CP）の破れ}（arXiv:2211.11008, 2303.04495）：高次の断熱消去では、遅い多様体上の有効ダイナミクスが CP でなくなりうる。各次数で CP を保つ有効 Lindblad 方程式がとれるという Egusquiza の予想（2013）は、検索で見た範囲では未解決である。
+\item \textbf{理想的な有効生成子の非存在}（arXiv:2011.04713）：SW と des Cloizeaux の方法は同値であり、開放系では理想的な有効生成子は一般には存在しない。
+\end{itemize}
+
+\section{ゼノ極限の数学と長距離秩序}
+
+\begin{itemize}
+\item 非有界な生成子に対する開放系ゼノ極限の存在：Becker--Datta--Salzmann（arXiv:2010.04121）。
+\item 最適収束レート $O(1/n)$：Möbus--Rouzé（arXiv:2111.13911）。
+\item 強位相での定量的評価：Salzmann（arXiv:2409.06469）。著者は、非有界生成子への拡張を未解決問題として挙げている。
+\end{itemize}
+
+これらの誤差評価は摂動の演算子ノルムで書かれている。多体系ではホッピング項のノルムがサイト数 $N$ に比例するため、熱力学極限では評価が意味を失う。孤立系については、局所的 SW 変換（Bravyi--DiVincenzo--Loss, arXiv:1105.0675）を用いた $N$ に依存しない評価がある（arXiv:2001.03421）。
+
+長距離秩序は $N\to\infty$ での主張なので、「有効模型の秩序が元の模型でも見える」と言うには、少なくとも次の形の主張が必要になる。
+\begin{question}
+局所観測量 $O$ に対して、適当な時間範囲 $0\le t\le t_*$ で
+\begin{equation}
+\abs{\Tr[O\,e^{t\Lcal}\rho_0] - \Tr[O\,e^{t\Lcal_{\mathrm{eff}}}\rho_0]} \le \varepsilon(J/\gamma_3,t)
+\end{equation}
+が $N$ によらず成り立つか。ボソン（非有界）でどのような仮定が必要か。
+\end{question}
+
+\section{混合状態の相と対称性}
+
+ロスがあると状態は混合状態になる。秩序の判定には、strong-to-weak 自発的対称性の破れ（SWSSB）、Rényi-2 相関、フィデリティ相関といった混合状態の相の理論が使える（arXiv:2603.06363, 2605.29113 など）。
+
+\paragraph{3体ロス Lindbladian の対称性 \unverified}
+$U_\theta = e^{i\theta N}$（$N=\sum_i n_i$）とすると $U_\theta a_i U_\theta^\dagger = e^{-i\theta}a_i$ なので、
+\begin{equation}
+U_\theta L_i U_\theta^\dagger = e^{-3i\theta}L_i .
+\end{equation}
+$[U_\theta,H]=0$ と合わせると次のことがわかる。
+\begin{itemize}
+\item $\Lcal$ は任意の $\theta$ で $U_\theta(\cdot)U_\theta^\dagger$ と可換である。つまり U(1) は\textbf{弱い対称性}である。
+\item $[U_\theta,L_i]=0$ となるのは $e^{3i\theta}=1$ のときだけである。つまり\textbf{強い対称性}は $\mathbb{Z}_3=\{1,e^{2\pi iN/3},e^{4\pi iN/3}\}$ であり、全粒子数 $N \bmod 3$ が保存される（3粒子ずつ失われるので当然である）。
+\item 比較として、2体ロス $L_i=a_i^2$ の場合の強い対称性はパリティ $\mathbb{Z}_2$ である。
+\end{itemize}
+ダイマー凝縮の秩序変数 $a_i^2$ は、$\mathbb{Z}_3$ のもとで $e^{2\pi i\cdot 2/3}$ の位相を受ける。
+
+\begin{question}
+3体ロス系の（準定常な）ダイマー超流動では、強い $\mathbb{Z}_3$ 対称性について SWSSB が起きるか。2体ロス（強い $\mathbb{Z}_2$）の場合とはどう異なるか。
+\end{question}
+
+\section{定常状態での秩序：非平衡統計力学からの制約}
+
+ロスだけの系では定常状態は（$N \bmod 3$ のセクターごとに）粒子数が高々2の状態になる。したがってダイマー超流動は準定常な相として現れるにすぎない。真の定常相にするにはポンプが必要になる。駆動された2次元ボソン系は、強い異方性がない限り代数的な超流動秩序をもてない（Altman ら, arXiv:1311.0876、KPZ 方程式への写像）。また、2次駆動の2次元ボース気体では Ising 相が KPZ 相に置き換わるという報告がある（arXiv:2103.01947）。
+
+\section{開放系の微分幾何学的定式化}
+
+\begin{itemize}
+\item \textbf{GKLS ベクトル場の分解}（Ciaglia--Marmo ら, arXiv:1705.05186）：生成子をハミルトンベクトル場、勾配ベクトル場、Kraus（ジャンプ）ベクトル場の和に分解する。ランクを変える（層状多様体の層をまたぐ）のは Kraus 部分である。ガウス状態版として arXiv:2405.10282 がある。
+\item \textbf{勾配流構造}（Carlen--Maas, JFA 2017）：忠実な状態 $\sigma$ に関する詳細つり合いを満たす量子マルコフ半群は、非可換 2-Wasserstein 型のリーマン計量 $g$ に関して
+\begin{equation}
+\partial_t\rho = -\operatorname{grad}_g D(\rho\,\|\,\sigma)
+\end{equation}
+と書ける。Brooks--Maas（2024）は、勾配流構造の存在が BKM 型詳細つり合いと同値であることを示した。
+\item \textbf{定常状態部分空間の幾何}（Albert--Bradlyn--Fraas--Jiang, arXiv:1512.08079）：Fubini--Study 計量を一般化したリウビリアン量子幾何テンソル、Kubo 公式、ホロノミーを扱う。
+\end{itemize}
+
+\section{研究テーマ}
+
+\subsection*{テーマ A：詳細つり合いのない開放系の勾配流構造}
+
+粒子ロスの定常状態は真空であり、忠実でない。また詳細つり合いも満たさないので、Carlen--Maas の枠組みはそのままでは適用できない。最小模型として1モードの3体ロスを取ると、$L^\dagger L = \gamma_3\, n(n-1)(n-2)$ なので、粒子数対角な状態 $p_n = \mel{n}{\rho}{n}$ は古典的な死滅過程
+\begin{equation}
+\dot p_n = \gamma_3\qty[(n+3)(n+2)(n+1)\,p_{n+3} - n(n-1)(n-2)\,p_n]
+\end{equation}
+に従う。これは吸収状態をもつ非可逆なマルコフ連鎖である。
+
+\begin{question}
+\unverified{} 古典の非平衡最適輸送（質量が保存されない場合の Hellinger--Kantorovich／Wasserstein--Fisher--Rao 計量）や GENERIC 型の分解に対応する構造が、量子ロス系に存在するか。存在するなら、ゼノ部分空間への制限とどう両立するか。
+\end{question}
+
+\subsection*{テーマ B：開放系の超流動相の幾何学}
+
+ダイマー超流動に限らず、通常の超流動や他の相も対象とする。孤立系では、フラットバンド超流動の重みが量子計量で下から押さえられることが知られている（Peotta--Törmä 2015。記憶のみで未確認）。
+
+\begin{question}
+\unverified{} 開放系の（準）定常状態に対して、位相ねじれ $\theta$ への応答として超流動の重みを定義したとき、それは Albert らのリウビリアン量子幾何テンソルの $\theta$ 成分と関係づけられるか。
+\end{question}
+
+\section{次のステップ}
+\begin{enumerate}
+\item arXiv の本文で上記文献の主張を確認する（\texttt{research\_queue.md} の A1, B1, C1）。
+\item 最小模型（1モード・2サイト）での数値計算と記号計算で、テーマ A・B の問いを具体的に調べる。
+\end{enumerate}
+
+\end{document}

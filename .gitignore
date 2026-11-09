@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+__pycache__/
+.ipynb_checkpoints/
