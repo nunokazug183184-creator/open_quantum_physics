@@ -1,0 +1,49 @@
+\documentclass[11pt]{ltjsarticle}
+\input{preamble}
+\title{粒子ロス Lindbladian の線形移動度 Onsager 構造\\ ── 勾配流研究（A1--A3）の第1回}
+\date{2026年11月10日}
+\begin{document}
+\maketitle
+\begin{abstract}
+勾配流構造の既存結果（Carlen--Maas, Brooks--Maas）の仮定を本文で確認し（A1）、それが忠実な定常状態を要求するため粒子ロスには直接適用できないことを確認する。そのうえで、ジャンプ演算子 $a^k$ の純粋ロスについて、$\dot\rho=-\mathcal K_\rho(\nabla E)$、$E=\Tr(\rho N)/k$、$\mathcal K_\rho$ は $\rho$ について\emph{線形}な半正定値 Onsager 作用素、という厳密な書き換えを得て数値検算した（A3）。先行研究は浅い検索の範囲で見つけていない。
+\end{abstract}
+
+\section{A1：既存結果の仮定（本文確認済み）}
+Brooks--Maas（arXiv:2209.11149, §1）を本文で確認した。主結果は次の通り。\emph{有限次元でエルゴード的な} Lindblad 方程式（唯一の定常状態 $\sigma$ は可逆）が、フォン・ノイマン相対エントロピー $H_\sigma(\rho)=\Tr[\rho(\log\rho-\log\sigma)]$ の勾配流（状態空間の内部 $\mathcal P_+$ 上のあるリーマン計量に関して）であることは、BKM 詳細つり合い（$\langle A,B\rangle^{\rm bkm}_\sigma=\int_0^1\Tr[\sigma^{1-s}A^*\sigma^sB]ds$ に関する自己共役性）と同値である。GNS 詳細つり合い（$\Tr[\sigma A^*B]$）は十分条件（Carlen--Maas, arXiv:1609.01254）で、BKM より真に強い。一般的な定理（Thm 1.1）は、$X$ を $\nabla f$ として書く計量の存在を (i) 臨界点以外で $X\!\cdot\! Y>0$、(ii) 零点の一致、(iii) 臨界点で線形化が $\bar g$ と整合、で特徴づける（実解析性などの仮定付き）。
+
+\paragraph{帰結}どの結果も $\sigma$ の\emph{忠実性}（$\log\sigma$ が存在）を仮定する。粒子ロスでは $\sigma=\ket0\!\bra0$ は非忠実で、$H_\sigma\equiv\infty$。よって既存定理は適用外であり、非忠実定常状態への拡張が空白である（検索の範囲）。
+
+\section{A2：文献状況（検索のみ）}
+検索では、Mittnenzweig--Mielke（arXiv:1609.05765）の Lindblad 方程式のエントロピー的勾配構造、Ciaglia ら（arXiv:1705.05186）のベクトル場分解、metriplectic 非線形 Lindblad（Entropy 24, 1626）が見つかったが、本文は未読で、詳細つり合いのない線形 Lindblad の勾配構造への拡張を直接扱うものは確認できなかった。A2 は本文確認が未了（キューは $[~]$）。
+
+\section{A3：純粋ロスの線形移動度構造}
+\subsection{古典の場合（自分で導出、数値で検算）}
+$\sigma$ を熱的ゲイン付き減衰（幾何分布、$\sigma_n\propto q^n$）に置くと、古典の連鎖 $p_n$ は Maas 型の勾配流で、辺の伝導度は対数平均 $\theta$ で与えられる。$q\to0$ で辺 $(n{+}1\to n)$ の伝導度に $\log(1/q)$ を掛けると $\gamma(n+1)p_{n+1}$ に収束し（スクリプトで確認、収束は $1/\log$ で遅い）、力 $\log(p_{n+1}/\sigma_{n+1})-\log(p_n/\sigma_n)\simeq\log(1/q)$ は定数になる。したがって極限では
+\[
+\dot p_n=\gamma(n+1)p_{n+1}-\gamma np_n=-\sum_{\rm edges}w_e(p)\,\nabla_e\langle n\rangle,\quad w_{n}=\gamma(n+1)p_{n+1}
+\]
+すなわち\textbf{線形汎関数 $E=\langle n\rangle$ の、$p$ に線形な移動度を持つ勾配流}になる。（極限の議論は発見的で、厳密な収束定理は示していない。$\unverified$）
+
+\subsection{量子の場合：厳密な恒等式（導出し、数値検算済み）}
+$L_0=a^k$、$\Lcal\rho=\gamma\qty(L_0\rho L_0^\dagger-\frac12\{L_0^\dagger L_0,\rho\})$、$N=a^\dagger a$、$[N,a^k]=-ka^k$ とする。
+\begin{equation}
+\mathcal K_\rho(X):=-\frac{\gamma}{2}\Bigl([L_0,\rho[X,L_0^\dagger]]+[[L_0,X]\rho,L_0^\dagger]\Bigr).
+\end{equation}
+\begin{proposition}
+(1) $\Lcal\rho=-\mathcal K_\rho(N/k)$。(2) $\mathcal K_\rho$ は $\rho$ に線形で、HS 内積に関して対称、かつ $\Tr[X\mathcal K_\rho(X)]=\gamma\Tr\bigl(\rho\,D^\dagger D\bigr)\ge0$（$D=[L_0,X]$）。(3) $\mathcal K_\rho(\mathbb 1)=0$（トレース保存）。(4) $H$ が $N$ と可換なら $-i[H,\rho]$ は $E=\Tr(\rho N)/k$ を変えず、$\dot E=-\gamma\Tr(\rho\,a^{\dagger k}a^k)\le0$（数値で一致）。
+\end{proposition}
+\emph{証明の要点。}(1)：$[a^k,\rho a^{\dagger k}]+[a^k\rho,a^{\dagger k}]=2(a^k\rho a^{\dagger k})-\{L_0^\dagger L_0,\rho\}$ と $[N/k,a^{\dagger k}]=a^{\dagger k}$、$[a^k,N/k]=a^k$ より。(2)：$\Tr(X[A,Y])=\Tr([X,A]Y)$ を使うと $\Tr[X\mathcal K_\rho X]=\frac\gamma2(\Tr D\rho D^\dagger+\Tr D^\dagger D\rho)$。(4)：$\dot E=-\Tr[\nabla E\,\mathcal K_\rho(\nabla E)]=-g_\rho(N/k,N/k)$ で、$D=[a^k,N/k]=a^k$ より $-\gamma\Tr(\rho a^{\dagger k}a^k)$。
+
+\paragraph{数値検算}（\texttt{scripts/a3\_linear\_mobility.py}、切断 $N_{\max}=6,8,9$、$k=1,2,3$、ランダムな $\rho$）：恒等式 (1) は機械精度（$\sim10^{-15}$）、$\mathcal K_\rho$ の非対称性 $\lesssim10^{-14}$、最小固有値 $\ge-10^{-14}$、$\dot E$ は理論値に一致。
+
+\paragraph{零モード}$\mathcal K_\rho$ の零空間の次元は $k$（スクリプトの出力: $k=1,2,3$ で 1,2,3）。$[a^k,X]=0$ の解（$a^k$ の可換子環）に対応し、$k\ge2$ では $\mathbb Z_k$ 弱対称性の\emph{保存量}（$n\bmod k$ の各類の占有確率）に当たる。計量は各保存量セクターで非退化で、これは3体ロス（$k=3$）の弱 $\mathbb Z_3$ 対称性と整合する。
+\paragraph{意味づけ}計量 $g_\rho(X,X)=\gamma\Tr(\rho[L_0,X]^\dagger[L_0,X])$ は $\rho$ の線形関数で、真空に近づくと退化する（Brooks--Maas の条件 (iii) の臨界点での計量 $\bar g$ が存在しないことに対応：$E$ のヘッシアンが $0$）。つまり非忠実な吸収状態では「対数平均型」でなく「線形（upwind 型）」の移動度が現れる。
+
+\section{未解決・推測（$\unverified$）}
+\begin{itemize}
+\item 複数のジャンプ演算子を持つ一般の非忠実系に拡張できるか。上の構成は、すべてのジャンプが同じ量 $Q$ を同じ量 $q$ だけ下げる場合に限る。
+\item $H\neq0$ を含めた GENERIC（可逆部分と非可逆部分の直交性・縮退条件）が成り立つか。$E$ を保存するとは限らず（$H$ が $N$ と非可換だと $\dot E$ に寄与）、未検討。
+\item 熱的 Lindbladian の Carlen--Maas 計量の $q\to0$ 極限を、古典の対角部分だけでなく量子の非対角部分も含めて厳密に示すこと。
+\item 上の構造は先行研究を\emph{浅く検索した限り}見つかっていないだけで、新規性は未確認。
+\end{itemize}
+\end{document}

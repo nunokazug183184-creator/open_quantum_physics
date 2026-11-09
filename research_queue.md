@@ -5,9 +5,9 @@
 
 ## テーマ A：詳細つり合いのない開放系の勾配流構造
 
-- [ ] A1. 文献の本文確認：Carlen–Maas（JFA 2017）、Brooks–Maas（2024）の勾配流構造の正確な仮定（忠実な定常状態・GNS/KMS/BKM 詳細つり合い）を整理する
-- [ ] A2. 詳細つり合いを持たない Lindbladian に対する既存の拡張（GENERIC／metriplectic 分解、非可逆部分の分離など）がどこまで知られているか調べる
-- [ ] A3. 粒子ロス（ジャンプ演算子 $a^k$、定常状態が真空で非忠実）に対して、古典の非平衡最適輸送（Hellinger–Kantorovich／Wasserstein–Fisher–Rao）の量子版のような構造がありうるか、最小模型（1モード・粒子数切断）で具体的に計算して検討する
+- [x] A1.(本文確認済み、`notes/2026-11-10_loss_linear_mobility`) 文献の本文確認：Carlen–Maas（JFA 2017）、Brooks–Maas（2024）の勾配流構造の正確な仮定（忠実な定常状態・GNS/KMS/BKM 詳細つり合い）を整理する
+- [~] A2.(検索のみ。本文未読: Mittnenzweig–Mielke 1609.05765 など) 詳細つり合いを持たない Lindbladian に対する既存の拡張（GENERIC／metriplectic 分解、非可逆部分の分離など）がどこまで知られているか調べる
+- [~] A3.(純粋ロスの線形移動度 Onsager 構造を導出・検算、`notes/2026-11-10_loss_linear_mobility`。複数ジャンプ・H≠0・非対角部分の極限が残る) 粒子ロス（ジャンプ演算子 $a^k$、定常状態が真空で非忠実）に対して、古典の非平衡最適輸送（Hellinger–Kantorovich／Wasserstein–Fisher–Rao）の量子版のような構造がありうるか、最小模型（1モード・粒子数切断）で具体的に計算して検討する
 
 ## テーマ B：開放系の超流動相（ダイマーに限らない）の幾何学
 

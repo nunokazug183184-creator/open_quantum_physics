@@ -22,7 +22,7 @@
 
 - 文献は **Web 検索の要約レベルでのみ確認済み**。論文本文は未読（2026-11-09 時点で、セッションから arxiv.org へ直接アクセスできなかった）。
 - arxiv.org を許可した個人用クラウド環境「open_quantum_physics」を作成済み。次回以降はこの環境でセッションを始めること。
-- 次の作業：`research_queue.md` の先頭から。
+- 2026-11-10：A1 完了、A3 に純粋ロスの線形移動度構造（厳密恒等式、数値検算済み）。次の作業：A2 の本文確認、A3 の拡張、その後 B1。
 
 ## 文献の確認状況
 
@@ -47,17 +47,19 @@
 | arXiv:2103.01947 | 🔍 | 2次駆動2次元ボース気体で Ising 相が KPZ 相に置き換わる |
 | Ciaglia, Di Cosmo, Ibort, Laudato, Marmo, arXiv:1705.05186 | 🔍 | GKLS ベクトル場 = ハミルトン + 勾配 + Kraus |
 | Cruz-Prado et al., arXiv:2405.10282 | 🔍 | 上記のガウス状態版 |
-| Carlen, Maas, JFA (2017) | 🔍 | 詳細つり合い付き量子マルコフ半群 = 相対エントロピーの勾配流 |
-| Brooks, Maas (2024) | 🔍 | 勾配流構造 ⇔ BKM 詳細つり合い |
+| Carlen, Maas, JFA (2017), arXiv:1609.01254 | 📖 | 詳細つり合い付き量子マルコフ半群 = 相対エントロピーの勾配流 |
+| Brooks, Maas (2024), arXiv:2209.11149 | 📖 | 勾配流構造 ⇔ BKM 詳細つり合い |
 | Albert, Bradlyn, Fraas, Jiang, PRX (2016), arXiv:1512.08079 | 🔍 | リウビリアンの量子幾何テンソル、ホロノミー |
 | Reiter, Sørensen, PRA (2012) | 💭 | 有効演算子形式 |
 | Macieszczak et al., PRL (2016) | 💭 | 開放系の準安定性理論 |
 | Zanardi, Campos Venuti, PRL (2014) | 💭 | 強散逸下の定常多様体内のダイナミクス |
 | Kuwahara, Saito, PRL (2021) | 💭 | ボソン系の Lieb–Robinson 評価 |
 | Peotta, Törmä (2015) | 💭 | フラットバンド超流動の重みと量子計量 |
-| Mittnenzweig, Mielke (2017) | 💭 | 量子マスター方程式の GENERIC 構造 |
+| Mittnenzweig, Mielke (2017), arXiv:1609.05765 | 🔍 | 量子マスター方程式の GENERIC 構造 |
 
 ## 作業環境メモ
+
+- 2026-11-10: arxiv.org へ curl で直接アクセス可、pdftotext で本文を読める。apt は先に `apt-get update` が必要で `texlive-science` は無い（無しでビルド可）。`python3` は 3.11 を指すが numpy は /usr/bin/python3 で使えた（`pip install` は 3.13 側に入る点に注意）。
 
 - TeX：LuaLaTeX + LuaTeX-ja。インストール手順は `README.md`。クラウドコンテナは使い捨てなので、環境のセットアップスクリプト未設定ならセッションごとに再インストールが必要。
 - 数値計算：Python 3.11（NumPy/SciPy/QuTiP は都度 `pip install`）。CPU 4 コア・メモリ約 15GB・GPU なし。
@@ -68,3 +70,9 @@
 - 先行研究を検索で整理（上表）。テーマ A・B・C を設定。
 - 3体ロス Lindbladian の対称性について考察：全粒子数 mod 3 が強い $\mathbb{Z}_3$ 対称性、U(1) は弱い対称性（ノート §4、未検証）。
 - 成果：`notes/2026-11-09_overview.tex` / `.pdf`
+
+### 2026-11-10
+- A1：Brooks–Maas・Carlen–Maas の本文を確認。定理は有限次元・エルゴード・**忠実な** $\sigma$ が前提で、非忠実（粒子ロス）は対象外。
+- A3：$L=\sqrt\gamma a^k$ の純粋ロスは $\dot\rho=-\mathcal K_\rho(N/k)$、$\mathcal K_\rho$ は $\rho$ に線形な対称半正定値作用素、と厳密に書ける（切断 $N_{\max}\le9$、$k\le3$ で $10^{-14}$ 精度で検算）。零空間は $\mathbb Z_k$ 弱対称性の保存量に対応。熱的ゲインの $q\to0$ 極限の古典対角部分でも整合（発見的）。
+- 未解決：A2 は本文未読。複数ジャンプ演算子・$H\ne0$（GENERIC）・非対角部分の極限は未検討。新規性は浅い検索の範囲でのみ。時間の都合で A2・B1 には着手していない。
+- 申し送り：A2（Mittnenzweig–Mielke 本文）→ A3 拡張 → B1。成果：`notes/2026-11-10_loss_linear_mobility.tex/.pdf`、`scripts/a3_linear_mobility.py`。
