@@ -6,10 +6,13 @@
 
 | パス | 内容 |
 |---|---|
-| `research_log.md` | 研究の経緯・現在の状況・文献の確認状況。毎回まずここを読む |
+| `research_log.md` | 研究の経緯・現在の状況・成果の検証状況・次のAIへの申し送り・文献の確認状況。毎回まずここを読む |
 | `research_queue.md` | 次に取り組む問いのリスト（上から順に処理） |
+| `CLAUDE.md` | 研究上のルール（手動・自動の両方のセッションが従う） |
+| `ROUTINE.md` | 毎日の自動研究セッションの手順書 |
 | `notes/` | TeX ノートと生成した PDF（`.tex` と `.pdf` を両方コミットする） |
 | `notes/preamble.tex` | 全ノート共通のプリアンブル |
+| `scripts/` | 検算に使ったスクリプト |
 
 ## ノートのビルド
 
@@ -19,10 +22,4 @@ LuaLaTeX（LuaTeX-ja）を使う。
 cd notes && latexmk -lualatex -interaction=nonstopmode 2026-11-09_overview.tex
 ```
 
-TeX Live が入っていない環境では次で入る（Ubuntu）:
-
-```sh
-apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended \
-  texlive-latex-extra texlive-lang-japanese texlive-luatex texlive-fonts-recommended \
-  texlive-science latexmk
-```
+TeX Live の入れ方は `ROUTINE.md` の「0. 環境の準備」を参照。
